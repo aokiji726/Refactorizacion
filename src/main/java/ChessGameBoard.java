@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
 import java.awt.Color;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
@@ -16,7 +16,7 @@ import java.awt.GridLayout;
  */
 public class ChessGameBoard extends JPanel{
     private BoardSquare[][] chessCells;
-    private BoardListener   listener;
+    private transient BoardListener   listener;
     // ----------------------------------------------------------
     /**
      * Returns the entire board.
@@ -148,8 +148,7 @@ public class ChessGameBoard extends JPanel{
             }
         }
         repaint();
-        //revalidate();
-        // only the combination of these two calls work...*shrug*
+        
     }
     /**
      * (Re)initializes this ChessGameBoard to its default layout with all 32
@@ -231,15 +230,9 @@ public class ChessGameBoard extends JPanel{
      * @author Myles David (davidmm2)
      * @version 2010.11.16
      */
-    private class BoardListener
-        implements MouseListener
+    private class BoardListener extends MouseAdapter
     {
-        /**
-         * Do an action when the left mouse button is clicked.
-         *
-         * @param e
-         *            the event from the listener
-         */
+        @Override
         public void mouseClicked( MouseEvent e ){
             if ( e.getButton() == MouseEvent.BUTTON1 &&
                 getParent() instanceof ChessPanel ){
@@ -247,37 +240,6 @@ public class ChessGameBoard extends JPanel{
                     .determineActionFromSquareClick( e );
             }
         }
-        /**
-         * Unused method.
-         *
-         * @param e
-         *            the mouse event from the listener
-         */
-        public void mouseEntered( MouseEvent e ){ /* not used */
-        }
-        /**
-         * Unused method.
-         *
-         * @param e
-         *            the mouse event from the listener
-         */
-        public void mouseExited( MouseEvent e ){ /* not used */
-        }
-        /**
-         * Unused method.
-         *
-         * @param e
-         *            the mouse event from the listener
-         */
-        public void mousePressed( MouseEvent e ){ /* not used */
-        }
-        /**
-         * Unused method.
-         *
-         * @param e
-         *            the mouse event from the listener
-         */
-        public void mouseReleased( MouseEvent e ){ /* not used */
-        }
+        
     }
 }

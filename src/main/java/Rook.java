@@ -12,8 +12,7 @@ import java.util.Map;
  * @version 2010.11.17
  */
 public class Rook extends ChessGamePiece{
-	protected Map<Integer, String> icons_map;
-	// private ArrayList<String> possibleMoves;
+	protected Map<Integer, String> iconsmap;
 	// ----------------------------------------------------------
 	/**
 	 * Create a new Rook object.
@@ -55,12 +54,12 @@ public class Rook extends ChessGamePiece{
 	 */
 	@Override
 	public ImageIcon createImageByPieceType() {
-		icons_map = new HashMap<Integer, String>();
+		iconsmap = new HashMap<Integer, String>();
 
-		icons_map.put(-1, "chessImages/default-Unassigned.gif");
-		icons_map.put(ChessGamePiece.BLACK, "chessImages/BlackRook.gif");
-		icons_map.put(ChessGamePiece.WHITE, "chessImages/WhiteRook.gif");
+		iconsmap.put(-1, "chessImages/default-Unassigned.gif");
+		iconsmap.put(ChessGamePiece.BLACK, "chessImages/BlackRook.gif");
+		iconsmap.put(ChessGamePiece.WHITE, "chessImages/WhiteRook.gif");
 		
-		return new ImageIcon(getClass().getResource(this.icons_map.get(getColorOfPiece())));
+		return new ImageIcon(getClass().getResource(this.iconsmap.get(getColorOfPiece())));
 	}
 }

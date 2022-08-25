@@ -69,6 +69,7 @@ public class ChessMenuBar
                 toggleGraveyardHandler();
             }
         }
+        
     }
     // ----------------------------------------------------------
     /**
@@ -95,15 +96,16 @@ public class ChessMenuBar
         JOptionPane.showMessageDialog( this.getParent(), "Thanks for leaving"
             + ", quitter! >:(" );
         Component possibleFrame = this;
-        while ( possibleFrame != null && !( possibleFrame instanceof JFrame ) ){
+        while (!( possibleFrame instanceof JFrame ) ){
             possibleFrame = possibleFrame.getParent();
+            JFrame frame = (JFrame)possibleFrame;
+            frame.setVisible( false );
+            frame.dispose();
         }
-        JFrame frame = (JFrame)possibleFrame;
-        frame.setVisible( false );
-        frame.dispose();
+        
     }
     /**
-     * Takes an appropriate action if the toggle graveyard button is clicked.
+     * Arriba se eliminó parte de lo validado en el while debido a expresión que siempre se evalúa como "verdadero"
      */
     private void toggleGraveyardHandler(){
         ( (ChessPanel)this.getParent() ).getGraveyard( 1 ).setVisible(
